@@ -3,8 +3,8 @@ import os
 
 with open('tabak_km.txt', mode='r', encoding='UTF8') as f:
     src_km = f.readlines()
-    tabak_km = [s.split('\t') for s in src_km]
-    tabak_km = [km[2] for km in tabak_km if (km[1] == 'Нет' and not km[3] ) or (km[1] == 'Да')]
+    tabak_km = [s.strip().split('\t') for s in src_km]
+    tabak_km = [km[2] for km in tabak_km if (km[1] == 'Нет' and len(km) == 3) or (km[1] == 'Да')]
 
 page_num = 1
 for ind, km in enumerate(tabak_km):
