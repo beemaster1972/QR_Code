@@ -13,7 +13,11 @@ for ind, km in enumerate(tabak_km):
     print('Генерирую -->', ind, km)
     img = qr.make(km)
     img.save('QR/page'+str(page_num)+'/'+str(ind)+'.png')
+<<<<<<< HEAD
     if not ((ind+1) % 234):
+=======
+    if not ((ind+1) % 250):
+>>>>>>> c026499600ab701072802cbf7d4306ef74587147
         page_num += 1
         #break
 print('Всего страниц', page_num)
