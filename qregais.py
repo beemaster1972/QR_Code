@@ -17,9 +17,9 @@ page_num = 1
 for ind, km in enumerate(egais_km):
     if not os.path.exists('QR_egais/page'+str(page_num)):
         os.makedirs('QR_egais/page'+str(page_num))
-    print('Генерирую -->', ind, km)
-    img = qr.make(km)
-    img.save('QR_egais/page'+str(page_num)+'/'+str(ind)+'.png')
+    print('Генерирую -->',page_num, ind, km[0])
+    img = qr.make(km[0])
+    img.save('QR_egais/page'+str(page_num)+'/'+str(page_num)+'-'+str(ind)+'.png')
     #img.drawrect()
     if not ((ind+1) % 100):
         page_num += 1
