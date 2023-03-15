@@ -6,7 +6,7 @@ from fpdf import FPDF
 with open('tabak_km.txt', mode='r', encoding='UTF8') as f:
     src_km = f.readlines()
     tabak_km = [s.strip().split('\t') for s in src_km]
-    tabak_km = [km[2] for km in tabak_km if km[1] == 'Нет'] # and not re.match(r'^029',km[2])]
+    tabak_km = [km[2] for km in tabak_km[1:]] # if km[1] == 'Нет'] # and not re.match(r'^029',km[2])]
 
 page_num = 1
 pdf = FPDF(format='A4', unit='mm', orientation='Landscape')
@@ -22,8 +22,8 @@ for ind, km in enumerate(tabak_km):
     img = qr.make(km)
     pdf.image(img.get_image(), x, y, w=width, h=height)
     count_of_codes += 1
-    x = x + width if x <= pdf.epw - width else 0
-    y = y + height if x == 0 else y
+    x = x + width+1 if x <= pdf.epw - width else 0
+    y = y + height+1 if x == 0 else y
     if y > (pdf.eph+30 - height):
         x, y = pdf.epw/2, pdf.eph+30 -1
         print(x, y)
