@@ -1,6 +1,7 @@
 import qrcode as qr
 import os
 import re
+from fpdf import FPDF
 
 with open('egais_km.txt', mode='r', encoding='UTF8') as f:
     src_km = f.readlines()
