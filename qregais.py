@@ -1,7 +1,8 @@
 import qrcode as qr
-import os
-import re
+# import os
+# import re
 from fpdf import FPDF
+# from pdf417 import encode, render_image
 
 with open('egais_km.txt', mode='r', encoding='utf-8-sig') as f:
     src_km = f.readlines()
@@ -17,9 +18,9 @@ width, height,count_of_codes = 20, 20, 0
 for ind, km in enumerate(egais_km):
     # if not os.path.exists('QR/page'+str(page_num)):
     #     os.makedirs('QR/page'+str(page_num))
-    #print('Генерирую -->', ind, km)
-    img = qr.make(km)
-    pdf.image(img.get_image(), x, y, w=width, h=height)
+    print('Генерирую -->', ind, km[0])
+    img = qr.make(km[0]) # render_image(encode(km[0]))
+    pdf.image(img.get_image(), x, y, w=width, h=height)  # .get_image()
     count_of_codes += 1
     x = x + width+1 if x <= pdf.epw - width else 0
     y = y + height+1 if x == 0 else y
