@@ -6,7 +6,7 @@ from fpdf import FPDF
 
 with open('egais_km.txt', mode='r', encoding='utf-8-sig') as f:
     src_km = f.readlines()
-    egais_km = [s.strip().split('\t') for s in src_km]
+    egais_km = [s.strip().split('\t') for s in src_km[1:]]
 
 page_num = 1
 pdf = FPDF(format='A4', unit='mm', orientation='Landscape')
@@ -27,11 +27,11 @@ for ind, km in enumerate(egais_km):
     if y > (pdf.eph+30 - height):
         x, y = pdf.epw/2, pdf.eph+30 -1
         print(x, y)
-        pdf.text(x, y, 'Page '+str(page_num)+' total codes on page ' + str(count_of_codes))
+        pdf.text(x, y, 'EGAIS Page '+str(page_num)+' total codes on page ' + str(count_of_codes))
         page_num += 1
         pdf.add_page()
         x, y, count_of_codes = 1, 1, 0
-pdf.text(pdf.epw/2, pdf.eph+30 - 1,'Page '+str(page_num)+' total codes on page '+ str(count_of_codes))
+pdf.text(pdf.epw/2, pdf.eph+30 - 1,'EGAIS Page '+str(page_num)+' total codes on page '+ str(count_of_codes))
 pdf.output('egais_km.pdf')
 # egais_km = [km for km in egais_km if re.match(r'^\d{14}', km[0])]
 # print(len(egais_km))

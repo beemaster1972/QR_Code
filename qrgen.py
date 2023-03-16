@@ -3,7 +3,7 @@ import os
 import re
 from fpdf import FPDF
 
-with open('tabak_km.txt', mode='r', encoding='UTF8') as f:
+with open('tabak_km.txt', mode='r', encoding='utf-8-sig') as f:
     src_km = f.readlines()
     tabak_km = [s.strip().split('\t') for s in src_km]
     tabak_km = [km[2] for km in tabak_km[1:]] # if km[1] == 'Нет'] # and not re.match(r'^029',km[2])]
