@@ -3,7 +3,9 @@ from fpdf import FPDF
 
 
 class CIS:
-    """ Класс определения акцизных марок, в дальнейшем АМ"""
+    """ Класс определения акцизных марок, в дальнейшем АМ
+    параметр numcolumn указывает номер колонки с АМ, если numcolumn меньше нуля, то
+    метод get_cis() возвращает всю строку из файла filename"""
 
     def __init__(self, filename: str, encoding: str = 'utf-8-sig', has_header: bool = True, separator: str = '\t',
                  numcolumn: int = 0):

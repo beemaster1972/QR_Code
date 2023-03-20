@@ -4,8 +4,11 @@ import re
 from fpdf import FPDF
 from cCIS import CIS, PDF
 
-cis = CIS('tabak_km.txt')
+cis = CIS('tabak_km.txt', numcolumn=-1)
 tabak_cis = cis.get_cis()
+cis_tabak = [km[2]+'\n' if km[1] == 'Нет' else km[2][2:]+'\n' for km in tabak_cis]
+with open('cis_valid.txt', mode='w', encoding='utf-8-sig') as f:
+    f.writelines(cis_tabak)
 
 # with open('tabak_km.txt', mode='r', encoding='utf-8-sig') as f:
 #     src_km = f.readlines()
@@ -45,4 +48,4 @@ tabak_cis = cis.get_cis()
 # #>>>>>>> c026499600ab701072802cbf7d4306ef74587147
 #         page_num += 1
 #         #break
-print('Всего страниц', page_num)
+# print('Всего страниц', page_num)
