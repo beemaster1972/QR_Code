@@ -4,11 +4,14 @@ import re
 from fpdf import FPDF
 from cCIS import CIS, PDF
 
-cis = CIS('tabak_km.txt', numcolumn=-1)
+cis = CIS('tabak_km.txt', numcolumn=2)
 tabak_cis = cis.get_cis()
-cis_tabak = [km[2]+'\n' if km[1] == 'Нет' else km[2][2:]+'\n' for km in tabak_cis]
-with open('cis_valid.txt', mode='w', encoding='utf-8-sig') as f:
-    f.writelines(cis_tabak)
+# tabak_cis = [km[2]+'?' if km[1] == 'Да' else km[2] for km in tabak_cis ]#km[1]=='Нет'] # or (km[1]=='Да' and '"' not in km[2])]
+pdf = PDF('tabak_km.pdf')
+pdf.fill_pages(tabak_cis, 'Tabak ')
+# cis_tabak = [km[2]+'\n' if km[1] == 'Нет' else km[2][2:]+'\n' for km in tabak_cis]
+# with open('cis_valid.txt', mode='w', encoding='utf-8-sig') as f:
+#     f.writelines(cis_tabak)
 
 # with open('tabak_km.txt', mode='r', encoding='utf-8-sig') as f:
 #     src_km = f.readlines()
